@@ -25,7 +25,7 @@ markdown_cols = ["MarkDown1", "MarkDown2", "MarkDown3", "MarkDown4", "MarkDown5"
 df[markdown_cols] = df[markdown_cols].fillna(0)
 
 # Temperature, Fuel_Price, CPI, Unemployment -> fill with median
-for col in ["Temperature", 'Furl_Price', 'CPI', 'Unemployment']:
+for col in ["Temperature", 'Fuel_Price', 'CPI', 'Unemployment']:
     df[col] = df[col].fillna(df[col].median())
 
 # 4. Convert IsHoliday to boolean 
@@ -41,7 +41,7 @@ df['Week'] = df['Date'].dt.isocalendar().week
 df['DayOfWeek'] = df['Date'].dt.dayofweek  # Monday = 0 ---> Sunday = 6
 
 # Rolling averages for key features 
-for col in ["Temperature", 'Furl_Price', 'CPI', 'Unemployment']:
+for col in ["Temperature", 'Fuel_Price', 'CPI', 'Unemployment']:
     df[f'{col}_7d_avg'] = df[col].rolling(window = 7, min_periods = 1).mean()
     df[f'{col}_30d_avg'] = df[col].rolling(window = 30, min_periods = 1).mean()
 
